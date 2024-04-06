@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  election-tracker:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      # get these values from the webstie
+      MECENAT_ID:
+      SESSION_ID:
