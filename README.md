@@ -1,4 +1,4 @@
-# karvalet
+# ElectionTracker
 
 A small project that gives "live" statistics on Chalmers student unions council elections
 
