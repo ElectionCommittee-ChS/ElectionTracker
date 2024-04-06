@@ -2,23 +2,12 @@
 
 A small project that gives "live" statistics on Chalmers student unions council elections
 
-## Development
-
-```sh
-npm run dev
-```
-
-## Build
-
-```sh
-npm run build
-```
-
 ## Update for a new year
 
 1. In `frontend/src/views/HomeView.vue` update the students_by_division object to correct values of how many total students each division has
-2. Update the `backend/getData.js` file with a new `mecenat.id` and `ASP.NET_SessionId`. You can get these by logging in on your mecenat account -> opening devTools -> finding the correct cookies
-3. Push your changes to GitHub
+2. Push your changes to GitHub and they will be automatically deployed to the server
+3. Update the `environment:` on portainer with a new `mecenat.id` and `ASP.NET_SessionId`. You can get these by logging in on your mecenat account -> opening devTools -> finding the correct cookies
+
 
 <!-- 3. build the project using `yarn build`
 4. copy `frontend/public` and `../getData.sh` to the correct place for hosting -->
@@ -28,3 +17,4 @@ npm run build
 ## Credits
 
 Made by [Lucas Glimfjord](https://github.com/hallavad)
+Updated by [Emrik Östling](https://github.com/C4illin)
