@@ -69,7 +69,7 @@ const students_by_division: divisions = {
   Sjö: 388 + 111,
   TD: 232,
   Utomlandsstuderande: 94,
-  Exhange: 254,
+  Exchange: 254,
   'Fristående Kurs': 16,
   V: 1033,
   Z: 604,
