@@ -69,7 +69,7 @@ const students_by_division: divisions = {
   Sjö: 367 + 105,
   TD: 245,
   Utomlandsstuderande: 145,
-  Exhange: 259,
+  Exchange: 259,
   'Fristående Kurs': 21,
   V: 1038,
   Z: 648,
@@ -154,22 +154,22 @@ const total_percentage = computed(() => {
 <template>
   <main>
     <hgroup>
-      <h1>FuM Election 2024</h1>
+      <h1>Live votes</h1>
       <h2>CURRENT TOTAL: {{ total_percentage * 100 }} %</h2>
       <h2>Voting percentage by student divisions</h2>
-      <h3>Vote now at <a href="https://fumval.se">Fumval.se</a></h3>
+      <h3 class="mobile">Vote now at <a href="https://fumval.se">Fumval.se</a></h3>
     </hgroup>
     <img src="@/assets/logo.svg" alt="Logo for Fullmäktige Election 2024">
     <div class="division-wrapper">
       <div class="division" v-for="(division, index) in vote_data" :key="division.name">
         <div class="percentage">{{ division.percentage / 10 }}%</div>
-        <div class="bar-desktop" :style="'height: ' +
+        <div class="bar-desktop desktop" :style="'height: ' +
           division.percentage / 10 +
           '%; background-color: ' +
           colours_by_division[division.name] +
           ';'
           "></div>
-        <div class="bar-mobile" :style="'width: ' +
+        <div class="bar-mobile mobile" :style="'width: ' +
           division.percentage / 10 +
           '%; background-color: ' +
           colours_by_division[division.name] +
@@ -178,6 +178,7 @@ const total_percentage = computed(() => {
         <div class="name">{{ division.name }}</div>
       </div>
     </div>
+    <h3 class="desktop">Vote now at <a href="https://fumval.se">Fumval.se</a></h3>
   </main>
 </template>
 
@@ -193,7 +194,7 @@ main {
 
 h1 {
   font-weight: 900;
-  font-size: 3em;
+  font-size: 5em;
   font-style: italic;
   filter: drop-shadow(5px 5px 0px #00ACFF11);
 }
@@ -204,10 +205,11 @@ h2 {
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: 2.5em;
+  text-align: right;
 }
 
-hgroup a {
+h3 a {
   display: inline-block;
   font-style: italic;
   padding: 0px 10px;
@@ -240,7 +242,7 @@ hgroup {
   justify-content: center;
   align-items: flex-end;
   margin: 20px 0;
-  height: 60vh;
+  height: 55vh;
 }
 
 .division {
@@ -264,7 +266,7 @@ hgroup {
   transition: height 0.3s ease;
 }
 
-.bar-mobile {
+.mobile {
   display: none;
 }
 
@@ -283,11 +285,11 @@ main>img {
     min-width: 90vw;
   }
 
-  .bar-desktop {
+  .desktop {
     display: none;
   }
 
-  .bar-mobile {
+  .mobile {
     display: block;
     transition: width 0.3s ease;
   }
@@ -318,11 +320,24 @@ main>img {
     bottom: 0;
     width: 175px;
   }
+
+  h1 {
+    font-size: 4em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3.mobile {
+    text-align: left;
+    font-size: 1.5em;
+  }
 }
 
 @media (max-width: 600px) {
   h1 {
-    font-size: 1.8em;
+    font-size: 3em
   }
 
   h2 {

@@ -1,6 +1,7 @@
 const fetch = require("node-fetch-native");
 const fs = require("node:fs").promises;
 const jsdom = require("jsdom");
+const { get } = require("node:http");
 const { JSDOM } = jsdom;
 require("dotenv").config();
 
@@ -26,6 +27,12 @@ async function getData() {
 	let data = Array.from(dom.window.document.querySelectorAll("td"))
 		.map((td) => td.textContent)
 		.filter((text) => text !== "Röster");
+
+	// remove "Section","Votes",
+	if (data[0] === "Section" && data[1] === "Votes") {
+		data.shift();
+		data.shift();
+	}
 
 	// check if data is empty
 	if (data.length === 0) {
