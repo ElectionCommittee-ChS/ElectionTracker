@@ -54,27 +54,27 @@ interface colours {
 }
 
 const students_by_division: divisions = {
-  A: 655,
-  D: 783,
-  DS: 955,
-  E: 729,
-  F: 908,
-  GS: 197,
-  H: 111 + 208 + 173 + 613,
-  I: 705,
-  IT: 645,
+  A: 686,
+  D: 822,
+  DS: 949,
+  E: 750,
+  F: 937,
+  GS: 261,
+  H: 186 + 199 + 185 + 602,
+  I: 673,
+  IT: 693,
   K: 394,
-  KfKb: 534,
-  M: 1142,
-  Sjö: 388 + 111,
-  TD: 232,
-  Utomlandsstuderande: 94,
-  Exhange: 254,
-  'Fristående Kurs': 16,
-  V: 1033,
-  Z: 604,
-  TB: 338,
-  AE: 125
+  KfKb: 492,
+  M: 1065,
+  Sjö: 367 + 105,
+  TD: 245,
+  Utomlandsstuderande: 145,
+  Exhange: 259,
+  'Fristående Kurs': 21,
+  V: 1038,
+  Z: 648,
+  TB: 362,
+  AE: 127
 }
 
 const colours_by_division: colours = {
@@ -155,7 +155,7 @@ const total_percentage = computed(() => {
   <main>
     <hgroup>
       <h1>FuM Election 2024</h1>
-      <h2>CURRENT TOTAL: {{ total_percentage * 100}} %</h2>
+      <h2>CURRENT TOTAL: {{ total_percentage * 100 }} %</h2>
       <h2>Voting percentage by student divisions</h2>
       <h3>Vote now at <a href="https://fumval.se">Fumval.se</a></h3>
     </hgroup>
@@ -164,17 +164,17 @@ const total_percentage = computed(() => {
       <div class="division" v-for="(division, index) in vote_data" :key="division.name">
         <div class="percentage">{{ division.percentage / 10 }}%</div>
         <div class="bar-desktop" :style="'height: ' +
-        division.percentage / 10 +
-        '%; background-color: ' +
-        colours_by_division[division.name] +
-        ';'
-        "></div>
+          division.percentage / 10 +
+          '%; background-color: ' +
+          colours_by_division[division.name] +
+          ';'
+          "></div>
         <div class="bar-mobile" :style="'width: ' +
-        division.percentage / 10 +
-        '%; background-color: ' +
-        colours_by_division[division.name] +
-        ';'
-        "></div>
+          division.percentage / 10 +
+          '%; background-color: ' +
+          colours_by_division[division.name] +
+          ';'
+          "></div>
         <div class="name">{{ division.name }}</div>
       </div>
     </div>
