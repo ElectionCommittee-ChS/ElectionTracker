@@ -1,6 +1,7 @@
 const getData = require("./getData.js");
 const express = require("express");
 const fs = require("node:fs");
+const cron = require("node-cron");
 const app = express();
 const port = process.env.PORT || 3000;
 const year = new Date().getFullYear();
@@ -15,8 +16,7 @@ let history = {};
 fs.readFile(`./history/${year}.json`, "utf8", (err, jsonString) => {
 	if (err) {
 		console.error("Error reading file from disk:", err);
-		console.log("Creating new history file")
-		history = {};
+		console.log("Creating new history file");
 
 		// create the file if it doesn't exist
 		fs.writeFile(`./history/${year}.json`, "{}", (err) => {
@@ -34,7 +34,7 @@ fs.readFile(`./history/${year}.json`, "utf8", (err, jsonString) => {
 	}
 });
 
-// update data every 15 minutes
+// update data every 5 minutes
 setInterval(
 	() => {
 		getData().then((result) => {
@@ -45,18 +45,16 @@ setInterval(
 );
 
 // save the data to a file every hour
-setInterval(
-	() => {
-		history[new Date().toISOString()] = data;
+cron.schedule("0 0 * * * *", () => {
+	console.log("Saving data to file");
+	history[new Date().toISOString()] = data;
 
-		fs.writeFile(`./history/${year}.json`, JSON.stringify(history), (err) => {
-			if (err) {
-				console.error("Error writing file to disk:", err);
-			}
-		});
-	},
-	1 * 60 * 60 * 1000,
-);
+	fs.writeFile(`./history/${year}.json`, JSON.stringify(history), (err) => {
+		if (err) {
+			console.error("Error writing file to disk:", err);
+		}
+	});
+});
 
 app.use(express.static("../frontend/dist/"));
 
@@ -70,9 +68,8 @@ app.get("/history.json", (req, res) => {
 
 app.get("/total", (req, res) => {
 	let total = 0;
-
-	for (let i = 1; i < data.length; i += 2) {
-		total += Number.parseInt(data[i]);
+	for (const key in data) {
+		total += data[key];
 	}
 
 	res.send(total.toString());

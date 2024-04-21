@@ -33,46 +33,40 @@ async function getData() {
 		data.shift();
 	}
 
+	// rewrite the data array to an object
+	data = data.reduce((acc, curr, i) => {
+		if (i % 2 === 0) {
+			acc[curr] = Number.parseInt(data[i + 1]);
+		}
+		return acc;
+	}, {});
+
 	// check if data is empty
 	if (data.length === 0) {
-		console.error("Error: data is empty, using default data")
+		console.error("Error: data is empty, using default data");
 
-		data = [
-			"A",
-			"0",
-			"D",
-			"0",
-			"DS",
-			"0",
-			"E",
-			"0",
-			"F",
-			"0",
-			"GS",
-			"0",
-			"H",
-			"0",
-			"I",
-			"0",
-			"IT",
-			"0",
-			"K",
-			"0",
-			"KfKb",
-			"0",
-			"M",
-			"0",
-			"Sjö",
-			"0",
-			"TD",
-			"0",
-			"Utomlandsstuderande",
-			"0",
-			"V",
-			"0",
-			"Z",
-			"0",
-		];
+		data = {
+			A: 0,
+			AE: 0,
+			D: 0,
+			DS: 0,
+			E: 0,
+			Exchange: 0,
+			F: 0,
+			GS: 0,
+			H: 0,
+			I: 0,
+			IT: 0,
+			K: 0,
+			KfKb: 0,
+			M: 0,
+			Sjö: 0,
+			TB: 0,
+			TD: 0,
+			Utomlandsstuderande: 0,
+			V: 0,
+			Z: 0,
+		};
 	}
 
 	await fs.writeFile("./data.json", JSON.stringify(data));

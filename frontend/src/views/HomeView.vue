@@ -8,48 +8,28 @@ interface DivVotes {
   percentage: number
 }
 
-const raw_data: string[] = [
-  "A",
-  "16",
-  "AE",
-  "2",
-  "D",
-  "60",
-  "DS",
-  "3",
-  "E",
-  "58",
-  "Exchange",
-  "1",
-  "F",
-  "45",
-  "GS",
-  "79",
-  "H",
-  "36",
-  "I",
-  "127",
-  "IT",
-  "72",
-  "K",
-  "42",
-  "KfKb",
-  "36",
-  "M",
-  "19",
-  "Sjö",
-  "30",
-  "TB",
-  "15",
-  "TD",
-  "10",
-  "Utomlandsstuderande",
-  "5",
-  "V",
-  "12",
-  "Z",
-  "90"
-]
+const raw_data: divisions = {
+  A: 0,
+  AE: 0,
+  D: 0,
+  DS: 0,
+  E: 0,
+  Exchange: 0,
+  F: 0,
+  GS: 0,
+  H: 0,
+  I: 0,
+  IT: 0,
+  K: 0,
+  KfKb: 0,
+  M: 0,
+  Sjö: 0,
+  TB: 0,
+  TD: 0,
+  Utomlandsstuderande: 0,
+  V: 0,
+  Z: 0,
+};
 
 interface divisions {
   [key: string]: number
@@ -106,19 +86,17 @@ const colours_by_division: colours = {
 }
 
 async function get_vote_data() {
-  let data: string[] = []
   axios
     .get('/data.json')
     .then((res) => create_vote_data(res.data))
     .catch(() => create_vote_data(raw_data))
 
-  function create_vote_data(data: any) {
+  function create_vote_data(data: divisions) {
     const temp: DivVotes[] = []
     console.log(data)
-    if (Array.isArray(data)) {
-      while (data.length > 1) {
-        const name: string = data.shift()
-        const votes: number = Number(data.shift())
+    if (typeof data === 'object') {
+      for (const name in data) {
+        const votes: number = Number(data[name])
         const percentage: number = Math.round(
           (votes / students_by_division[name] + Number.EPSILON) * 1000
         )
