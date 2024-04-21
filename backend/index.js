@@ -64,6 +64,10 @@ app.get("/data.json", (req, res) => {
 	res.json(data);
 });
 
+app.get("/history.json", (req, res) => {
+	res.json(history);
+});
+
 app.get("/total", (req, res) => {
 	let total = 0;
 
