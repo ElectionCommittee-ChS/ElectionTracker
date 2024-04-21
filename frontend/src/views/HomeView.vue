@@ -9,40 +9,46 @@ interface DivVotes {
 }
 
 const raw_data: string[] = [
-  'A',
-  '10',
-  'D',
-  '52',
-  'DS',
-  '3',
-  'E',
-  '29',
-  'F',
-  '42',
-  'GS',
-  '31',
-  'H',
-  '19',
-  'I',
-  '126',
-  'IT',
-  '59',
-  'K',
-  '15',
-  'KfKb',
-  '25',
-  'M',
-  '69',
-  'Sjö',
-  '3',
-  'TD',
-  '3',
-  'Utomlandsstuderande',
-  '6',
-  'V',
-  '93',
-  'Z',
-  '7'
+  "A",
+  "16",
+  "AE",
+  "2",
+  "D",
+  "60",
+  "DS",
+  "3",
+  "E",
+  "58",
+  "Exchange",
+  "1",
+  "F",
+  "45",
+  "GS",
+  "79",
+  "H",
+  "36",
+  "I",
+  "127",
+  "IT",
+  "72",
+  "K",
+  "42",
+  "KfKb",
+  "36",
+  "M",
+  "19",
+  "Sjö",
+  "30",
+  "TB",
+  "15",
+  "TD",
+  "10",
+  "Utomlandsstuderande",
+  "5",
+  "V",
+  "12",
+  "Z",
+  "90"
 ]
 
 interface divisions {
@@ -155,7 +161,7 @@ const total_percentage = computed(() => {
   <main>
     <hgroup>
       <h1>Live votes</h1>
-      <h2>CURRENT TOTAL: {{ total_percentage * 100 }} %</h2>
+      <h2>CURRENT TOTAL: {{ (total_percentage * 100).toFixed(1) }} %</h2>
       <h2>Voting percentage by student divisions</h2>
       <h3 class="mobile">Vote now at <a href="https://fumval.se">Fumval.se</a></h3>
     </hgroup>
