@@ -1,7 +1,6 @@
 const fetch = require("node-fetch-native");
 const fs = require("node:fs").promises;
 const jsdom = require("jsdom");
-const { get } = require("node:http");
 const { JSDOM } = jsdom;
 require("dotenv").config();
 
@@ -36,6 +35,8 @@ async function getData() {
 
 	// check if data is empty
 	if (data.length === 0) {
+		console.error("Error: data is empty, using default data")
+
 		data = [
 			"A",
 			"0",
