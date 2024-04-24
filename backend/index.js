@@ -34,18 +34,18 @@ fs.readFile(`./history/${year}.json`, "utf8", (err, jsonString) => {
 	}
 });
 
-// update data every 5 minutes
+// update data every 2.5 minutes
 setInterval(
 	() => {
 		getData().then((result) => {
 			data = result;
 		});
 	},
-	5 * 60 * 1000,
+	2.5 * 60 * 1000,
 );
 
 // save the data to a file every hour
-cron.schedule("0 0 * * * *", () => {
+cron.schedule("0 */10 * * * *", () => {
 	console.log("Saving data to file");
 	history[new Date().toISOString()] = data;
 
