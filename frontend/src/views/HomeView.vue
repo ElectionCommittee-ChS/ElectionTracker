@@ -9,27 +9,27 @@ interface DivVotes {
 }
 
 const raw_data: divisions = {
-  A: 0,
-  AE: 0,
-  D: 0,
-  DS: 0,
-  E: 0,
-  Exchange: 0,
-  F: 0,
-  GS: 0,
-  H: 0,
-  I: 0,
-  IT: 0,
-  K: 0,
-  KfKb: 0,
-  M: 0,
-  Sjö: 0,
-  TB: 0,
-  TD: 0,
-  Utomlandsstuderande: 0,
-  V: 0,
-  Z: 0,
-};
+  "A": 117,
+  "AE": 54,
+  "D": 154,
+  "DS": 102,
+  "E": 143,
+  "Exchange": 7,
+  "F": 166,
+  "GS": 188,
+  "H": 213,
+  "I": 188,
+  "IT": 152,
+  "K": 87,
+  "KfKb": 166,
+  "M": 128,
+  "Sjö": 79,
+  "TB": 40,
+  "TD": 27,
+  "Utomlandsstuderande": 19,
+  "V": 122,
+  "Z": 137
+}
 
 interface divisions {
   [key: string]: number
@@ -166,9 +166,9 @@ const total_percentage = computed(() => {
   </main>
 </template>
 
-<style scoped>
+<style>
 main {
-  max-width: 1280px;
+  max-width: 1500px;
   padding: 3rem;
   font-weight: normal;
   background-color: white;
@@ -205,19 +205,14 @@ h3 a {
   transition: 0.3s;
 }
 
-hgroup a:hover {
-  background-color: #007fbe;
+h3 a:hover {
+  background-color: #006fa7;
   text-decoration: none;
   filter: drop-shadow(3px 3px 0px #00ACFF11);
 }
 
 hgroup {
   margin-bottom: 20px;
-}
-
-.division>div {
-  padding: 5px;
-  margin-bottom: 5px;
 }
 
 .division-wrapper {
@@ -239,6 +234,10 @@ hgroup {
   margin: 0 5px;
 }
 
+.percentage {
+  margin-bottom: 5px;
+}
+
 .percentage,
 .name {
   font-size: 1.2em;
@@ -246,6 +245,8 @@ hgroup {
 }
 
 .bar-desktop {
+  margin-bottom: 5px;
+  padding: 5px;
   width: 100%;
   transition: height 0.3s ease;
 }
@@ -263,7 +264,7 @@ main>img {
   transition: width 0.3s ease;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   main {
     padding: 2rem;
     min-width: 90vw;
@@ -271,6 +272,15 @@ main>img {
 
   .desktop {
     display: none;
+  }
+
+  .bar-mobile {
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+
+  .percentage {
+    padding: 5px;
   }
 
   .mobile {
