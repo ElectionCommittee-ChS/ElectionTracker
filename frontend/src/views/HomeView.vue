@@ -154,7 +154,7 @@ const total_percentage = computed(() => {
           ';'
           "></div>
         <div class="bar-mobile mobile" :style="'width: ' +
-          division.percentage / 10 +
+          division.percentage / 12 +
           '%; background-color: ' +
           colours_by_division[division.name] +
           ';'
