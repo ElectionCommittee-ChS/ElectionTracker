@@ -41,6 +41,7 @@ interface colours {
 
 const students_by_division: divisions = {
   A: 686,
+  AE: 127,
   D: 822,
   DS: 949,
   E: 750,
@@ -53,14 +54,13 @@ const students_by_division: divisions = {
   KfKb: 492,
   M: 1065,
   Sjö: 367 + 105,
+  TB: 362,
   TD: 245,
   Utomlandsstuderande: 145,
   Exchange: 259,
   'Fristående Kurs': 21,
   V: 1038,
   Z: 648,
-  TB: 362,
-  AE: 127
 }
 
 const colours_by_division: colours = {
