@@ -66,6 +66,25 @@ app.get("/history.json", (req, res) => {
 	res.json(history);
 });
 
+app.get("/history/:timestamp", (req, res) => {
+	const timestamp = req.params.timestamp;
+	if (history[timestamp]) {
+		res.json(history[timestamp]);
+	} else {
+		// return the closest timestamp
+		const timestamps = Object.keys(history);
+		const closest = timestamps.reduce((acc, curr) => {
+			return Math.abs(new Date(curr) - new Date(timestamp)) < Math.abs(new Date(acc) - new Date(timestamp)) ? curr : acc;
+		}, timestamps[0]);
+
+		// add the closest timestamp to the response
+		out = history[closest];
+		out.timestamp = closest;
+
+		res.json(out);
+	}
+});
+
 app.get("/total", (req, res) => {
 	let total = 0;
 	for (const key in data) {
