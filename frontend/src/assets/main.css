@@ -15,3 +15,183 @@ body {
   width: 100%;
   min-height: 100vh;
 }
+
+main {
+  max-width: 1500px;
+  padding: 3rem;
+  font-weight: normal;
+  background-color: white;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+h1 {
+  font-weight: 900;
+  font-size: 5em;
+  font-style: italic;
+  filter: drop-shadow(5px 5px 0px #00ACFF11);
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 2.5em;
+  text-align: right;
+}
+
+h3 a {
+  display: inline-block;
+  font-style: italic;
+  padding: 0px 10px;
+  border-radius: 7px;
+  background-color: #00acff;
+  color: white;
+  text-decoration: 0.5px underline;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+h3 a:hover {
+  background-color: #006fa7;
+  text-decoration: none;
+  filter: drop-shadow(3px 3px 0px #00ACFF11);
+}
+
+hgroup {
+  margin-bottom: 20px;
+}
+
+.division-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 20px 0;
+  height: 55vh;
+}
+
+.division {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  width: 4vw;
+  margin: 0 5px;
+}
+
+.percentage {
+  margin-bottom: 5px;
+}
+
+.percentage,
+.name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.bar-desktop {
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 100%;
+  transition: height 0.3s ease;
+}
+
+.mobile {
+  display: none;
+}
+
+main>img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  margin: 50px;
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 1200px) {
+  main {
+    padding: 2rem;
+    min-width: 90vw;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .bar-mobile {
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+
+  .percentage {
+    padding: 5px;
+  }
+
+  .mobile {
+    display: block;
+    transition: width 0.3s ease;
+  }
+
+  .division-wrapper {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .division {
+    flex-direction: row-reverse;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .division>div {
+    height: 40px;
+  }
+
+  .name {
+    width: 55px;
+    text-align: center;
+  }
+
+  main>img {
+    top: initial;
+    bottom: 0;
+    width: 175px;
+  }
+
+  h1 {
+    font-size: 4em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3.mobile {
+    text-align: left;
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 3em
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 1.2em;
+  }
+
+  main>img {
+    width: 100px;
+  }
+}

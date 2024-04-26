@@ -97,9 +97,7 @@ async function get_vote_data() {
     if (typeof data === 'object') {
       for (const name in data) {
         const votes: number = Number(data[name])
-        const percentage: number = Math.round(
-          (votes / students_by_division[name] + Number.EPSILON) * 1000
-        )
+        const percentage: number = votes
 
         if (name === "Fristående kurs") continue;
         if (name === "Exchange") continue;
@@ -118,20 +116,15 @@ const vote_data: Ref<DivVotes[]> = ref([])
 
 get_vote_data()
 
-const total_percentage = computed(() => {
+const total_votes = computed(() => {
   const total_votes: number = vote_data.value.reduce(
     (sum: number, div: DivVotes) => sum + div.votes,
     0
   )
 
-  const total_students: number = Object.entries(students_by_division).reduce(
-    (sum: number, div: any[]) => sum + div[1],
-    0
-  )
 
-  console.log(total_students, total_votes)
-
-  return Math.round((total_votes / total_students + Number.EPSILON) * 1000) / 1000
+  // return Math.round((total_votes / total_students + Number.EPSILON) * 1000) / 1000
+  return total_votes
 })
 </script>
 
@@ -139,22 +132,22 @@ const total_percentage = computed(() => {
   <main>
     <hgroup>
       <h1>Live votes</h1>
-      <h2>CURRENT TOTAL: {{ (total_percentage * 100).toFixed(1) }} %</h2>
-      <h2>Voting percentage by student divisions</h2>
+      <h2>CURRENT TOTAL: {{ total_votes }}</h2>
+      <h2>Votes by student divisions</h2>
       <h3 class="mobile">Vote now at <a href="https://fumval.se">Fumval.se</a></h3>
     </hgroup>
     <img src="@/assets/logo.svg" alt="Logo for Fullmäktige Election 2024">
     <div class="division-wrapper">
       <div class="division" v-for="(division, index) in vote_data" :key="division.name">
-        <div class="percentage">{{ division.percentage / 10 }}%</div>
+        <div class="percentage">{{ division.percentage }}</div>
         <div class="bar-desktop desktop" :style="'height: ' +
-          division.percentage / 10 +
+          division.percentage / 5 +
           '%; background-color: ' +
           colours_by_division[division.name] +
           ';'
           "></div>
         <div class="bar-mobile mobile" :style="'width: ' +
-          division.percentage / 12 +
+          division.percentage / 5 +
           '%; background-color: ' +
           colours_by_division[division.name] +
           ';'
