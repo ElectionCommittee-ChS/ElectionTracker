@@ -9,26 +9,26 @@ interface DivVotes {
 }
 
 const raw_data: divisions = {
-  A: 117,
-  AE: 54,
-  D: 154,
-  DS: 102,
-  E: 143,
-  Exchange: 7,
-  F: 166,
-  GS: 188,
-  H: 213,
-  I: 188,
-  IT: 152,
-  K: 87,
-  KfKb: 166,
-  M: 128,
-  Sjö: 79,
-  TB: 40,
-  TD: 27,
-  Utomlandsstuderande: 19,
-  V: 122,
-  Z: 137
+  A: 135,
+  AE: 63,
+  D: 188,
+  DS: 121,
+  E: 178,
+  Exchange: 8,
+  F: 230,
+  GS: 199,
+  H: 237,
+  I: 207,
+  IT: 212,
+  K: 101,
+  KfKb: 186,
+  M: 175,
+  Sjö: 98,
+  TB: 46,
+  TD: 69,
+  Utomlandsstuderande: 25,
+  V: 156,
+  Z: 161
 }
 
 interface divisions {
@@ -101,10 +101,6 @@ async function get_vote_data() {
           (votes / students_by_division[name] + Number.EPSILON) * 1000
         )
 
-        if (name === "Fristående kurs") continue;
-        if (name === "Exchange") continue;
-        if (name === "Utomlandsstuderande") continue;
-
         temp.push({ name, votes, percentage })
       }
     }
@@ -115,6 +111,10 @@ async function get_vote_data() {
   }
 }
 const vote_data: Ref<DivVotes[]> = ref([])
+
+const filtered_data: ComputedRef<DivVotes[]> = computed(() => {
+  return vote_data.value.filter((div) => div.name !== 'Fristående kurs' && div.name !== 'Exchange' && div.name !== 'Utomlandsstuderande')
+})
 
 get_vote_data()
 
@@ -145,7 +145,7 @@ const total_percentage = computed(() => {
     </hgroup>
     <img src="@/assets/logo.svg" alt="Logo for Fullmäktige Election 2024">
     <div class="division-wrapper">
-      <div class="division" v-for="(division, index) in vote_data" :key="division.name">
+      <div class="division" v-for="(division, index) in filtered_data" :key="division.name">
         <div class="percentage">{{ division.percentage / 10 }}%</div>
         <div class="bar-desktop desktop" :style="'height: ' +
           division.percentage / 10 +
