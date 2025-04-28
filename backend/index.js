@@ -35,26 +35,27 @@ fs.readFile(`./history/${year}.json`, "utf8", (err, jsonString) => {
 });
 
 // update data every 2.5 minutes
-// setInterval(
-// 	() => {
-// 		getData().then((result) => {
-// 			data = result;
-// 		});
-// 	},
-// 	2.5 * 60 * 1000,
-// );
+setInterval(
+	() => {
+		getData().then((result) => {
+			data = result;
+		});
+	},
+	2.5 * 60 * 1000,
+);
 
 // save the data to a file every hour
-// cron.schedule("0 */10 * * * *", () => {
-// 	console.log("Saving data to file");
-// 	history[new Date().toISOString()] = data;
+cron.schedule("0 */10 * * * *", () => {
+ 	console.log("Saving data to file");
+ 	history[new Date().toISOString()] = data;
 
-// 	fs.writeFile(`./history/${year}.json`, JSON.stringify(history), (err) => {
-// 		if (err) {
-// 			console.error("Error writing file to disk:", err);
-// 		}
-// 	});
-// });
+ 	fs.writeFile(`./history/${year}.json`, JSON.stringify(history), (err) => {
+ 		if (err) {
+ 			console.error("Error writing file to disk:", err);
+ 		}
+ 	});
+ });
+
 
 app.use(express.static("../frontend/dist/"));
 
