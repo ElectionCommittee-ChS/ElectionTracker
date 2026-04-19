@@ -143,7 +143,7 @@ const total_percentage = computed(() => {
       <h2>Voting percentage by student divisions</h2>
       <h3 class="mobile">Vote now at <a href="https://fumval.se">Fumval.se</a></h3>
     </hgroup>
-    <img src="@/assets/logo.svg" alt="Logo for Fullmäktige Election 2024">
+    <img src="@/assets/logo.png" alt="Logo for Fullmäktige Election 2026">
     <div class="division-wrapper">
       <div class="division" v-for="(division, index) in filtered_data" :key="division.name">
         <div class="percentage">{{ division.percentage / 10 }}%</div>
