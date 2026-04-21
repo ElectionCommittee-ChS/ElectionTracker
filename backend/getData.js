@@ -69,6 +69,9 @@ async function getData() {
 		};
 	}
 
+	// Remove null values
+	data = Object.fromEntries(Object.entries(data).filter(([, v]) => v !== null));
+
 	await fs.writeFile("./data.json", JSON.stringify(data));
 
 	return data;
