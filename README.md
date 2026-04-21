@@ -15,7 +15,7 @@ A small project that gives "live" statistics on Chalmers student unions council 
 1. Clone the repository
 2. Copy the `.env` to `.env.local` and fill in the correct values for `MECENAT_ID` and `SESSION_ID` (`mecenat.id` and `ASP.NET_SessionId` from the cookies)
 3. Run `npm install`
-5. Run `npm run dev` to start the development server for both the frontend and backend. Open [localhost:5173/](http://localhost:5173/) in your browser to see the app. It will automatically reload when you make changes to the code, the backend might take a few seconds to restart after changes.
+5. Run `npm start` to start the development server for both the frontend and backend. Open [localhost:5173/](http://localhost:5173/) in your browser to see the app. It will automatically reload when you make changes to the code, the backend might take a few seconds to restart after changes.
 
 ## Test like production
 
