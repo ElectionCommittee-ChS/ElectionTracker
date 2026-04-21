@@ -11,6 +11,13 @@ getData().then((result) => {
 	data = result;
 });
 
+// create the history folder if it doesn't exist
+fs.mkdir("./history", { recursive: true }, (err) => {
+	if (err) {
+		console.error("Error creating folder:", err);
+	}
+});
+
 // read history from ./history/year.json
 let history = {};
 fs.readFile(`./history/${year}.json`, "utf8", (err, jsonString) => {

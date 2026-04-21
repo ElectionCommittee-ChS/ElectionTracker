@@ -23,29 +23,18 @@ async function getData() {
 	});
 	const body = await response.text();
 	const dom = new JSDOM(body);
-	let data = Array.from(dom.window.document.querySelectorAll("td"))
-		.map((td) => td.textContent)
-		.filter((text) => text !== "Röster");
+	const rawData = Array.from(dom.window.document.querySelectorAll("td"))
+		.map((td) => td.textContent);
 
-	// remove "Section","Votes",
-	if (data[0] === "Section" && data[1] === "Votes") {
-		data.shift();
-		data.shift();
-	}
-
-	// remove null
-	if (data[1] == "Status" || data[1] == "You voted 260420") {
-		data.shift();
-		data.shift();
-	}
-
-	// rewrite the data array to an object
-	data = data.reduce((acc, curr, i) => {
-		if (i % 2 === 0) {
-			acc[curr] = Number.parseInt(data[i + 1]);
+	let data = {};
+	// the data is in the format "A", "47", "AE", "3", etc. so we loop through the array and check if the next element is a number, if it is we add it to the data object
+	// maybe it would be better to also have a valid list of keys
+	for (let i = 0; i < rawData.length - 1; i++) {
+		if (/^\d+$/.test(rawData[i + 1])) {
+			data[rawData[i]] = Number.parseInt(rawData[i + 1]);
+			i++;
 		}
-		return acc;
-	}, {});
+	}
 
 	// check if data is empty
 	if (data.length === 0) {
