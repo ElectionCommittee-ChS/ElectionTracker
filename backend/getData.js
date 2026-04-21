@@ -33,8 +33,8 @@ async function getData() {
 		data.shift();
 	}
 
-	// remove null categories
-	if (data[1] == null) {
+	// remove null
+	if (data[1] == "Status" || data[1] == "You voted 260420") {
 		data.shift();
 		data.shift();
 	}
