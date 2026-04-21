@@ -33,6 +33,12 @@ async function getData() {
 		data.shift();
 	}
 
+	// remove null categories
+	if (data[1] == null) {
+		data.shift();
+		data.shift();
+	}
+
 	// rewrite the data array to an object
 	data = data.reduce((acc, curr, i) => {
 		if (i % 2 === 0) {
@@ -68,9 +74,6 @@ async function getData() {
 			Z: 0,
 		};
 	}
-
-	// Remove null values
-	data = Object.fromEntries(Object.entries(data).filter(([, v]) => v !== null));
 
 	await fs.writeFile("./data.json", JSON.stringify(data));
 
