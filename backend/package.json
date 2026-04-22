@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
-		"dev": "nodemon index.js --ignore public/"
+		"dev": "nodemon index.js --ignore data.json --ignore history/"
 	},
 	"author": "",
 	"license": "ISC",
@@ -15,5 +15,8 @@
 		"jsdom": "^24.0.0",
 		"node-cron": "^3.0.3",
 		"node-fetch-native": "^1.6.4"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.0"
 	}
 }

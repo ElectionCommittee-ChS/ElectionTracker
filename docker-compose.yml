@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   election-tracker:
     build: .
@@ -7,7 +5,5 @@ services:
       - ./backend/history/:/usr/src/app/backend/history/
     ports:
       - 3000:3000
-    environment:
-      # get these values from the webstie
-      MECENAT_ID:
-      SESSION_ID:
+    env_file:
+      - .env.local

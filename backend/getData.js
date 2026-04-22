@@ -1,8 +1,9 @@
 const fetch = require("node-fetch-native");
 const fs = require("node:fs").promises;
+const path = require("node:path");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
-require("dotenv").config();
+require("dotenv").config({ path: path.resolve(__dirname, "../.env.local") });
 
 const mecenatId = process.env.MECENAT_ID;
 const sessionId = process.env.SESSION_ID;
